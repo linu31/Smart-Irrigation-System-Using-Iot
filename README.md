@@ -42,7 +42,7 @@ The system employs sensors to collect data, a microcontroller (like Arduino) to 
 
 👉🏻SAMPLE SET UP:
 
-![Setup Image](images/sampleset.jpg)
+<img src="images/sampleset.jpg" alt="Setup Image" width="400"/>
 
 👉🏻Benefits:
 
@@ -55,7 +55,7 @@ The system employs sensors to collect data, a microcontroller (like Arduino) to 
 
 👉🏻OVERALL IMPLEMENTATION:
 
-![Setup Image](images/setup.jpg)
+<img src="images/setup.jpg" alt="Setup Image" width="400"/>
 
 
 
