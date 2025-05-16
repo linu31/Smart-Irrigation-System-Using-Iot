@@ -40,6 +40,9 @@ The system employs sensors to collect data, a microcontroller (like Arduino) to 
 10)double click on the run.bat file directly u can see some instructions with outputs..
 11)check your ui and testing is done.!
 
+👉🏻SAMPLE SET UP:
+
+          👉🏻![Setup Image](images/sampleset.png)
 
 👉🏻Benefits:
 
@@ -48,6 +51,12 @@ The system employs sensors to collect data, a microcontroller (like Arduino) to 
   Reduces human labor and manual monitoring.
   Enables remote monitoring and control.
   Scalable for small gardens to large farms.
+
+
+👉🏻OVERALL IMPLEMENTATION:
+
+                    👉🏻![Setup Image](images/setup.png)
+
 
 
 🌾Conclusion:
