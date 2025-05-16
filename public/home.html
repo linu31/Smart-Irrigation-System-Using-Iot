@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>smart irrigation system System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+  
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #f5f7fa, #e4e8ec, #f0f3f6, #e6e9ed);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+   
+    .bubbles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(56, 152, 238, 0.1);
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: rise 15s infinite ease-in;
+    }
+
+    .bubble:nth-child(1) {
+      width: 40px;
+      height: 40px;
+      left: 10%;
+      animation-duration: 8s;
+      animation-delay: 1s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 20px;
+      height: 20px;
+      left: 20%;
+      animation-duration: 12s;
+      animation-delay: 2s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 50px;
+      height: 50px;
+      left: 35%;
+      animation-duration: 10s;
+      animation-delay: 0s;
+    }
+
+    .bubble:nth-child(4) {
+      width: 80px;
+      height: 80px;
+      left: 50%;
+      animation-duration: 15s;
+      animation-delay: 1s;
+    }
+
+    .bubble:nth-child(5) {
+      width: 35px;
+      height: 35px;
+      left: 55%;
+      animation-duration: 9s;
+      animation-delay: 3s;
+    }
+
+    .bubble:nth-child(6) {
+      width: 45px;
+      height: 45px;
+      left: 65%;
+      animation-duration: 11s;
+      animation-delay: 0s;
+    }
+
+    .bubble:nth-child(7) {
+      width: 25px;
+      height: 25px;
+      left: 75%;
+      animation-duration: 14s;
+      animation-delay: 2s;
+    }
+
+    .bubble:nth-child(8) {
+      width: 60px;
+      height: 60px;
+      left: 80%;
+      animation-duration: 13s;
+      animation-delay: 1s;
+    }
+
+    .bubble:nth-child(9) {
+      width: 30px;
+      height: 30px;
+      left: 90%;
+      animation-duration: 10s;
+      animation-delay: 3s;
+    }
+
+    @keyframes rise {
+      0% {
+        bottom: -100px;
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(100px);
+      }
+      100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+      }
+    }
+
+    header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, lightgreen, green);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #ff6b00, #ffcc00, #4caf50);
+    }
+
+    header img {
+      height: 80px;
+      width: auto;
+      border-radius: 12px;
+      margin-right: 25px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    header h1 {
+      font-size: 35px;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 80px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+
+    .box {
+      width: 280px;
+      height: 320px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      padding: 25px;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      border-top: 4px solid #3898ee;
+      backdrop-filter: blur(5px);
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(56, 152, 238, 0.1), rgba(56, 152, 238, 0));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .box:hover::before {
+      opacity: 1;
+    }
+
+    .box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(56, 152, 238, 0.2);
+      animation: pulseGlow 1.5s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 12px 28px rgba(56, 152, 238, 0.2);
+      }
+      100% {
+        box-shadow: 0 12px 28px rgba(56, 152, 238, 0.4);
+      }
+    }
+
+    
+    .box:nth-child(1) {
+      border-top-color: #ff6b00;
+    }
+    
+    .box:nth-child(1):hover {
+      animation: pulseGlowNCC 1.5s infinite alternate;
+    }
+    
+    @keyframes pulseGlowNCC {
+      0% {
+        box-shadow: 0 12px 28px rgba(255, 107, 0, 0.2);
+      }
+      100% {
+        box-shadow: 0 12px 28px rgba(255, 107, 0, 0.4);
+      }
+    }
+    
+    .box:nth-child(1)::before {
+      background: linear-gradient(135deg, rgba(255, 107, 0, 0.1), rgba(255, 107, 0, 0));
+    }
+
+   
+    .box:nth-child(2) {
+      border-top-color: #4caf50;
+    }
+    
+    .box:nth-child(2):hover {
+      animation: pulseGlowSAC 1.5s infinite alternate;
+    }
+    
+    @keyframes pulseGlowSAC {
+      0% {
+        box-shadow: 0 12px 28px rgba(76, 175, 80, 0.2);
+      }
+      100% {
+        box-shadow: 0 12px 28px rgba(76, 175, 80, 0.4);
+      }
+    }
+    
+    .box:nth-child(2)::before {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(76, 175, 80, 0));
+    }
+
+   
+    .box:nth-child(3) {
+      border-top-color: #ffcc00;
+    }
+    
+    .box:nth-child(3):hover {
+      animation: pulseGlowNSS 1.5s infinite alternate;
+    }
+    
+    @keyframes pulseGlowNSS {
+      0% {
+        box-shadow: 0 12px 28px rgba(255, 204, 0, 0.2);
+      }
+      100% {
+        box-shadow: 0 12px 28px rgba(255, 204, 0, 0.4);
+      }
+    }
+    
+    .box:nth-child(3)::before {
+      background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(255, 204, 0, 0));
+    }
+
+    .box img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      border-radius:8px;
+      margin-bottom: 20px;
+      transition: all 0.4s ease;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .box:hover img {
+      transform: scale(1.1);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: scale(1.1) translateY(0); }
+      50% { transform: scale(1.1) translateY(-10px); }
+    }
+
+    .box:nth-child(1):hover img {
+      animation: floatNCC 3s ease-in-out infinite;
+    }
+
+    @keyframes floatNCC {
+      0%, 100% { transform: scale(1.1) translateY(0) rotate(-5deg); }
+      50% { transform: scale(1.1) translateY(-10px) rotate(5deg); }
+    }
+
+    .box:nth-child(2):hover img {
+      animation: floatSAC 3s ease-in-out infinite;
+    }
+
+    @keyframes floatSAC {
+      0%, 100% { transform: scale(1.1) translateY(0); }
+      50% { transform: scale(1.1) translateY(-15px); }
+    }
+
+    .box:nth-child(3):hover img {
+      animation: floatNSS 3s ease-in-out infinite;
+    }
+
+    @keyframes floatNSS {
+      0%, 100% { transform: scale(1.1) translateY(0) rotate(5deg); }
+      50% { transform: scale(1.1) translateY(-10px) rotate(-5deg); }
+    }
+
+    .box span {
+      display: block;
+      margin-top: 15px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c3e50;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .box:hover span {
+      color: #3898ee;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    .box:nth-child(1):hover span {
+      color: #ff6b00;
+    }
+
+    .box:nth-child(2):hover span {
+      color: #4caf50;
+    }
+
+    .box:nth-child(3):hover span {
+      color: #ffcc00;
+    }
+
+    .box span::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: #3898ee;
+      margin: 10px auto 0;
+      transition: all 0.3s ease;
+    }
+
+    .box:hover span::after {
+      width: 80px;
+      background: currentColor;
+      animation: linePulse 2s infinite;
+    }
+
+    @keyframes linePulse {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(1.1); }
+    }
+
+    footer {
+      margin-top: 110px;
+      padding: 20px;
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 14px;
+      width: 100%;
+      background: rgba(240, 243, 246, 0.8);
+      position: relative;
+      backdrop-filter: blur(5px);
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ddd, transparent);
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+  <header>
+    <img src="./assets/smart_2.jpg" alt="Vignan Logo">
+    <h1>Smart Irrigation System</h1>
+  </header>
+
+  <div class="container">
+    <a href="manual.html" style="text-decoration: none;">
+      <div class="box">
+        <img src="./assets/online.jpg" alt="Manual Testing">
+        <span>MANUAL TESTING</span>
+      </div>
+    </a>
+    <a href="index.html" style="text-decoration: none;">
+      <div class="box">
+        <img src="./assets/online_2.jpg" alt="Real-Time Testing">
+        <span>REAL-TIME TESTING</span>
+      </div>
+    </a>
+  </div>
+
+  <footer>
+    &copy; 2025 Smart Irrigation System | All Rights Reserved |
+	Designed by Batch-17.
+  </footer>
+</body>
+</html>
