@@ -55,7 +55,7 @@ The system employs sensors to collect data, a microcontroller (like Arduino) to 
 
 👉🏻OVERALL IMPLEMENTATION:
 
-<img src="images/setup.jpg" alt="Setup Image" width="400" style="align-items:center;"/>
+<img src="images/setup.jpg" alt="Setup Image" width="600" style="align-items:center;"/>
 
 
 
